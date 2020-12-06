@@ -1,0 +1,23 @@
+﻿@inject BlazorBattle.Client.Services.IBananaService BananaService
+@implements IDisposable
+
+<div class="top-menu">
+    <img src="/Icons/I_C_Banana.png" />
+    <span class="popover-header">@BananaService.bananas </span>
+    <AddBanana  />
+</div>
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        BananaService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose ()
+    {
+        BananaService.OnChange -= StateHasChanged;
+    }
+
+}
